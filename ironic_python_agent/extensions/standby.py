@@ -149,7 +149,7 @@ class ImageDownload(object):
         if no_proxy:
             os.environ['no_proxy'] = no_proxy
         proxies = image_info.get('proxies', {})
-        resp = requests.get(url, stream=True, proxies=proxies)
+        resp = requests.get(url, stream=True, proxies=proxies, verify='/etc/ssl/certs/httpsserver.pem')
         if resp.status_code != 200:
             msg = ('Received status code {0} from {1}, expected 200. Response '
                    'body: {2}').format(resp.status_code, url, resp.text)
